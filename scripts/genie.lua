@@ -1,4 +1,10 @@
-solution "GLFW"
+-- select sdk version, genie defaults to 8.1
+if _ACTION == "vs2017" then
+	local action = premake.action.current()
+	action.vstudio.windowsTargetPlatformVersion="10.0.17763.0"
+end
+
+solution "glfw"
 	configurations {
 		"Debug",
 		"Release"
@@ -6,7 +12,7 @@ solution "GLFW"
 	location("../.build")
 	platforms { "x32", "x64" }
 
-project "GLFW"
+project "glfw"
 	targetname "glfw3"
 	language "C"
 	kind "StaticLib"
