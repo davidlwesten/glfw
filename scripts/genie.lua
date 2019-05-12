@@ -1,9 +1,7 @@
 solution "GLFW"
 	configurations {
 		"Debug",
-		"Release",
-		"MinSizeRel",
-		"RelWithDebInfo"
+		"Release"
 	}
 	location("../.build")
 	platforms { "x32", "x64" }
@@ -30,6 +28,8 @@ project "GLFW"
 		"../src/xkb_unicode.h"
 	}
 
+	targetdir "../.build/lib"
+
 	configuration "Debug"
 		defines { "_DEBUG" }
 		flags   { "Symbols" }
@@ -38,13 +38,17 @@ project "GLFW"
 		defines { "NDEBUG" }
 		flags   { "Optimize" }
 
-	configuration "RelMinSize"
-		defines { "NDEBUG" }
-		flags   { "OptimizeSize" }
+	configuration { "x32", "Debug" }
+		targetsubdir "x86/Debug"
+	
+	configuration { "x32", "Release" }
+		targetsubdir "x86/Release"
 
-	configuration "RelWithDebInfo"
-		defines { "NDEBUG" }
-		flags   { "Symbols", "Optimize" }
+	configuration { "x64", "Debug" }
+		targetsubdir "x64/Debug"
+
+	configuration { "x64", "Release" }
+		targetsubdir "x64/Release"
 
 	configuration "windows"
 		defines  {
