@@ -68,4 +68,5 @@ project "GLFW"
 			"../src/win32_time.c",
 			"../src/win32_window.c"
 		}
+		flags { "FullSymbols" }
 		links    { "gdi32" }
